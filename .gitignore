@@ -80,3 +80,5 @@ fabric.properties
 *.xml
 
 /node_modules
+
+*.env
