@@ -1,4 +1,4 @@
-![Image not found!](assets/images/tasker.png)
+![Image not found!](assets/images/Tasker.png)
 `Tasker` is a web application that serves as a task list.
 
 ![](assets/videos/pomodoro_timer_video.gif)
