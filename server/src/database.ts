@@ -9,8 +9,11 @@ export async function connectToDatabase(uri: string) {
     const client = new mongodb.MongoClient(uri);
     await client.connect();
 
-    const db = client.db("meanStackExample");
+    const db = client.db("tasker");
     await applySchemaValidation(db);
+
+    const tasksCollection = db.collection<Task>("tasks");
+    collections.tasks = tasksCollection;
 }
 
 async function applySchemaValidation(db: mongodb.Db) {
@@ -25,14 +28,14 @@ async function applySchemaValidation(db: mongodb.Db) {
                     bsonType: "string",
                     description: "'name' is required and is a string",
                 },
-                position: {
+                description: {
                     bsonType: "string",
                     description: "'description' is required and is a string",
                     minLength: 5
                 },
                 level: {
                     bsonType: "string",
-                    description: "'level' is required and is one of 'junior', 'mid', or 'senior'",
+                    description: "'level' is required and is one of 'easy', 'moderate', or 'difficult'",
                     enum: ["easy", "moderate", "difficult"],
                 },
             },
@@ -41,11 +44,11 @@ async function applySchemaValidation(db: mongodb.Db) {
 
     // Try applying the modification to the collection, if the collection doesn't exist, create it
     await db.command({
-        collMod: "employees",
+        collMod: "tasks",
         validator: jsonSchema
     }).catch(async (error: mongodb.MongoServerError) => {
         if (error.codeName === 'NamespaceNotFound') {
-            await db.createCollection("employees", {validator: jsonSchema});
+            await db.createCollection("tasks", {validator: jsonSchema});
         }
     });
 }
