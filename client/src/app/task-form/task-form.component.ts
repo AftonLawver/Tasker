@@ -38,16 +38,16 @@ import { Task } from '../task';
  
      <div class="mb-3">
        <div class="form-check">
-         <input class="form-check-input" type="radio" formControlName="level" name="level" id="level-junior" value="junior" required>
+         <input class="form-check-input" type="radio" formControlName="level" name="level" id="level-junior" value="easy" required>
          <label class="form-check-label" for="level-junior">Junior</label>
        </div>
        <div class="form-check">
-         <input class="form-check-input" type="radio" formControlName="level" name="level" id="level-mid" value="mid">
+         <input class="form-check-input" type="radio" formControlName="level" name="level" id="level-mid" value="moderate">
          <label class="form-check-label" for="level-mid">Mid</label>
        </div>
        <div class="form-check">
          <input class="form-check-input" type="radio" formControlName="level" name="level" id="level-senior"
-           value="senior">
+           value="difficult">
          <label class="form-check-label" for="level-senior">Senior</label>
        </div>
      </div>

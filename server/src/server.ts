@@ -5,7 +5,7 @@ import { connectToDatabase } from "./database";
 import { taskRouter } from "./task.routes";
 
 // Load environment variables from the .env file, where the ATLAS_URI is configured
-dotenv.config();
+dotenv.config({ path: 'E:/Tasker/.env'});
 
 const { ATLAS_URI } = process.env;
 

@@ -12,7 +12,7 @@ export class TaskService {
 
   constructor(private httpClient: HttpClient) { }
 
-  // Used to fetch the full list of employees
+  // Used to fetch the full list of tasks
   private refreshTasks() {
     this.httpClient.get<Task[]>(`${this.url}/tasks`)
         .subscribe(tasks => {

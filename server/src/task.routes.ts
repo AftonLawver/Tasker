@@ -33,13 +33,13 @@ taskRouter.get("/:id", async (req, res) => {
 
 taskRouter.post("/", async (req, res) => {
     try {
-        const employee = req.body;
-        const result = await collections.tasks.insertOne(employee);
+        const task = req.body;
+        const result = await collections.tasks.insertOne(task);
 
         if (result.acknowledged) {
-            res.status(201).send(`Created a new employee: ID ${result.insertedId}.`);
+            res.status(201).send(`Created a new task: ID ${result.insertedId}.`);
         } else {
-            res.status(500).send("Failed to create a new employee.");
+            res.status(500).send("Failed to create a new task.");
         }
     } catch (error) {
         console.error(error);
@@ -74,11 +74,11 @@ taskRouter.delete("/:id", async (req, res) => {
         const result = await collections.tasks.deleteOne(query);
 
         if (result && result.deletedCount) {
-            res.status(202).send(`Removed an employee: ID ${id}`);
+            res.status(202).send(`Removed a task: ID ${id}`);
         } else if (!result) {
-            res.status(400).send(`Failed to remove an employee: ID ${id}`);
+            res.status(400).send(`Failed to remove a task: ID ${id}`);
         } else if (!result.deletedCount) {
-            res.status(404).send(`Failed to find an employee: ID ${id}`);
+            res.status(404).send(`Failed to find an task: ID ${id}`);
         }
     } catch (error) {
         console.error(error.message);
